@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout :: head('Administrator')}">
 </head>
-<body>
-    <div class="container my-5">
+<body th:replace="~{layout :: base(~{::section})}">
+    <section>
         <div>
             <h2>발행처</h2>
         </div>
@@ -29,7 +29,7 @@
             </tbody>
         </table>
 
-    </div>
+    </section>
 
     <div th:replace="~{layout :: bootstrap_script}"></div>
 </body>

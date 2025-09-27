@@ -82,7 +82,7 @@ public class AdminController {
     public String inputSources(Model model){
         try {
             newsService.inputSources();
-        }catch (URISyntaxException | IOException | InterruptedException|RuntimeException e){
+        }catch (URISyntaxException | IOException | InterruptedException | RuntimeException e){
             e.getStackTrace();
             model.addAttribute("ERROR", e.getMessage());
             return "source";
