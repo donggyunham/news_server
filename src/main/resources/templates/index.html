@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('홈페이지')}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Hello Spring Boot!</h1>
+    <!--    <h2 th:text="${userid} + '님, 반갑습니다.'"></h2>-->
+    <!-- if문 사용 -->
+    <h2 th:if="${error}" th:text="|${error}|"></h2>
+    <h2 th:unless="${error}" th:text="|${userid}(${age})님, 반갑습니다.|"></h2>
+    <!-- 삼항연산자 -->
+    <h2 th:text="${page} ? |${page} 페이지 입니다.| : ''"></h2>
+
+    <div th:replace="~{layout :: bootstrap_script}"></div>
+
+<a class="btn btn-primary" href="/">Admin Page</a>
+</body>
+</html>
