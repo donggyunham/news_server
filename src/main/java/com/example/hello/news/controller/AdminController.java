@@ -1,8 +1,10 @@
 package com.example.hello.news.controller;
 
 import com.example.hello.news.dto.CategoryDTO;
+import com.example.hello.news.dto.CountArticleByCategory;
 import com.example.hello.news.dto.SourceDTO;
 import com.example.hello.news.entity.Category;
+import com.example.hello.news.service.ArticleService;
 import com.example.hello.news.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
     private final NewsService newsService;
+    private final ArticleService articleService;
 
     @GetMapping("/category")
     public String categories(Model model){
@@ -72,7 +75,7 @@ public class AdminController {
     }*/
     @GetMapping("/source")
     public String getSources(Model model){
-        List<SourceDTO> sources =newsService.getSources();
+        List<SourceDTO> sources =articleService.getSources();
         model.addAttribute("sources", sources);
         return "source";
     }
@@ -81,7 +84,7 @@ public class AdminController {
     @GetMapping("/inputSources")
     public String inputSources(Model model){
         try {
-            newsService.inputSources();
+            articleService.inputSources();
         }catch (URISyntaxException | IOException | InterruptedException | RuntimeException e){
             e.getStackTrace();
             model.addAttribute("ERROR", e.getMessage());
@@ -91,16 +94,29 @@ public class AdminController {
         return "source";
     }
 
-    @GetMapping("/inputArticles")
-    public String inputArticles(@RequestParam("category") String category, Model model){
+    @GetMapping("/article")
+    public String article(Model model){
+        List<CategoryDTO> categories = newsService.getCategories();
+        Long articleCount = articleService.getTotalArticleCount();
+        List<CountArticleByCategory> countByCategories = articleService.countArticleByCategories();
+
+        model.addAttribute("articleCount", articleCount);
+        model.addAttribute("countsByCategory", countByCategories);
+        model.addAttribute("categories", categories);
+
+        return "/article";
+    }
+
+    @PostMapping("/inputArticles")
+    public String inputArticles(@RequestParam("categoryName") String category, Model model){
         try {
-            newsService.inputArticles(category);
+            articleService.inputArticles(category);
         }catch (URISyntaxException | IOException | InterruptedException|RuntimeException e){
             e.getStackTrace();
             model.addAttribute("ERROR", e.getMessage());
-            return "index";
+            return "article";
         }
 
-        return "index";
+        return "redirect:/admin/article";
     }
 }

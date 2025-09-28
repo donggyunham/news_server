@@ -21,10 +21,10 @@ public class Source {
     // Auto Increment
     private Long id;
 
-    @Column(length = 50)
+    @Column(length = 100)
     private String sid;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 100)
     private String name;
 
     @Column(length = 1000)
