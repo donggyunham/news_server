@@ -121,7 +121,7 @@ public class NewsService {
         return "ERROR: 카테고리 정보가 없습니다.";
     }
 
-
-
-
+    public CategoryDTO updateCategory(String categoryId, String categoryName, String categoryMemo) {
+        return null;
+    }
 }

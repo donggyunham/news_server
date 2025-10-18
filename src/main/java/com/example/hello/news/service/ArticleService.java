@@ -86,6 +86,11 @@ public class ArticleService {
         try {
 
             for (SourceDTO dto : sourceResponse.getSources()) {
+                // dto의 getName을 호출하여 발행처 이름을 구하고 발행처 이름으로 db에서 검색한뒤 있으면 다음 데이터를 가져오도록 수정.
+                Optional<Source> srcOpt = sourceRepository.findByName(dto.getName());
+                if (srcOpt.isPresent())
+                    continue;
+
                 // 빈 Source Entity 인스턴스를 생성
                 Source source = new Source();
 

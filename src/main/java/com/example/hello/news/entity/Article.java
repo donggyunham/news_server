@@ -20,11 +20,11 @@ public class Article {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "source", foreignKey = @ForeignKey(name = "article_ibfk_1"))
+    @JoinColumn(name = "source_id", foreignKey = @ForeignKey(name = "article_ibfk_1"))
     private Source source;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category", foreignKey = @ForeignKey(name = "article_ibfk_2"))
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "article_ibfk_2"))
     private Category category;
 
     @Column(length = 150)

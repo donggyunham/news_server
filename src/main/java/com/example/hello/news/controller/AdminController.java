@@ -62,6 +62,15 @@ public class AdminController {
         return "redirect:/admin/category";
     }
 
+    @PostMapping("/updateCategory")
+    public String updateCategory(@RequestParam("Category_Id")String categoryId,
+                                 @RequestParam("Category_Name")String categoryName,
+                                 @RequestParam("Category_Memo")String categoryMemo,
+                                 Model model){
+
+        newsService.updateCategory(categoryId, categoryName, categoryMemo);
+        return "redirect:/admin/category";
+    }
     /*@GetMapping("/source")
     public String getSources(Model model){
         try {
@@ -87,11 +96,11 @@ public class AdminController {
             articleService.inputSources();
         }catch (URISyntaxException | IOException | InterruptedException | RuntimeException e){
             e.getStackTrace();
-            model.addAttribute("ERROR", e.getMessage());
+            model.addAttribute("error", e.getMessage());
             return "source";
         }
 
-        return "source";
+        return "redirect:/admin/source";
     }
 
     @GetMapping("/article")
