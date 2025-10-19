@@ -9,6 +9,7 @@ import lombok.*;
 //매개변수가 없는 생성자
 @NoArgsConstructor
 public class CategoryDTO {
+    private String id;
     private String name;
     private String memo;
 }

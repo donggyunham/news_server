@@ -10,6 +10,8 @@ import com.example.hello.news.repository.SourceRepository;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -110,26 +112,7 @@ public class ArticleService {
         }
     }
 
-    public List<SourceDTO> getSources(){
-        //데이터베이스로부터 Source Entity 리스트를 가져와서 모든 Source Entity 인스턴스를 SourceDTO 인스턴스로 변환하여 반환한다.
-        List<Source> sources = sourceRepository.findAll();
 
-        /*for(Source source : sources){
-        }*/
-        // ramda
-        //return sources.stream().map(source -> Source.toDTO(source)).toList();
-        // stream 메소드는 리스트 안의 모든 아이템들을 가져오는 메소드다. 반복가능한 형태로.
-        // stream.foreach(Functional Interface 익명 클래스 -> 람다식)
-        // stream.map()
-        // for(Source source : sources){}
-        // stream 대표 사용 두개. 괄호 안에는 둘다 인터페이스가 들어가야된다.(익명클래스를 괄호 안에 정의했다고 본다.)
-        /*return sources.stream().map(source -> {
-            return Source.toDTO(source);
-        }).toList();*/
-        /*foreach map 차이 : 전자는 반환하는 값이 없음. 변경해서 넣고 끝. 맵은 반환까지 해준다.*/
-        /*그러면 인풋에서 포이치 쓴건 왜쓴건가 맵을쓰면 안되나?*/
-        return sources.stream().map(Source::toDTO).toList();
-    }
 
     @Transactional
     public void inputArticles(String category) throws URISyntaxException, IOException, InterruptedException, RuntimeException {

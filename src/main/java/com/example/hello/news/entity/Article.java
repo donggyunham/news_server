@@ -27,7 +27,7 @@ public class Article {
     @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "article_ibfk_2"))
     private Category category;
 
-    @Column(length = 150)
+    @Column(length = 255)
     private String author;
 
     @Column(length = 500)
