@@ -4,6 +4,7 @@
 </head>
 <body th:replace="~{layout :: base(~{::section})}">
     <section>
+        <p th:text="${sources}">debug sources</p>
         <div>
             <h2>뉴스 발행처</h2>
             <!-- bootstrap을 이용한 버튼 만들기-->
@@ -50,20 +51,20 @@
                 </li>
                 <!-- 페이지 번호(최대 10개) -->
                 <li class="page-item"
-                    th:each="i : ${#numbers.sequence(sources.number / 10) * 10,
-                                                     T(java.lang.Math.min((sources.number / 10) * 10 + 9, source.totalPages - 1)}"
+                    th:each="i : ${#numbers.sequence((sources.number / 10) * 10,
+                             T(java.lang.Math).min((sources.number / 10) * 10 + 9, sources.totalPages - 1))}"
                     th:classappend="${sources.number == i} ? active">
                     <a class="page-link"
                        th:href="@{/admin/source(page=${i}, size=${sources.size})}"
                         th:text="${i+1}">0</a>
                 </li>
                 <!-- 다음 -->
-                <li class="page-item" th:classappend="${sources.first} ? 'disabled'">
+                <li class="page-item" th:classappend="${sources.last} ? 'disabled'">
                     <a class="page-link" th:href="@{/admin/source(page=${sources.number+1}, size=${sources.size})}">다음</a>
                 </li>
                 <!-- 마지막 -->
-                <li class="page-item" th:classappend="${sources.first} ? 'disabled'">
-                    <a class="page-link" th:href="@{/admin/source(page=0, size=${sources.size})}">마지막</a>
+                <li class="page-item" th:classappend="${sources.last} ? 'disabled'">
+                    <a class="page-link" th:href="@{/admin/source(page=${sources.totalPages - 1}, size=${sources.size})}">마지막</a>
                 </li>
             </ul>
         </nav>
