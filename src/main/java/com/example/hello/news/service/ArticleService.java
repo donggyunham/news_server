@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -192,5 +193,12 @@ public class ArticleService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<SourceByArticleDTO> getArticleCountBySource() {
+        // JPA : jakarta Persistance
+        // JPQL : JPA 전용 Query Language
+        // 기사가 많은 순서대로 상위 10개만 가져온다.
+        return articleRepository.countArticleBySource(PageRequest.of(0,10));
     }
 }

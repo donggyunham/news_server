@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Administrator')}">
+</head>
+<body th:replace="~{layout :: base(~{::section})}">
+    <section>
+        <!-- Thymleaf 템플릿 형태, bootstrap css를 이용하여... -->
+        <div>
+            <!-- 기사수 -->
+            <a th:text="${counts.articles}"></a>
+            <!-- 발행처수 -->
+            <a th:text="${counts.sources}"></a>
+            <!-- 카테고리수 -->
+            <a th:text="${counts.categories}"></a>
+        </div>
+
+    </section>
+</body>
+</html>

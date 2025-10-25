@@ -75,8 +75,8 @@ create table article(
     `content` text,
     `created_at` timestamp not null default current_timestamp,
     `updated_at` timestamp not null default current_timestamp on update current_timestamp,
-    foreign key(`source_id`) references `source`(`id`),
-    foreign key(`category_id`) references `category`(`id`)
+    constraint foreign key(`source_id`) references `source`(`id`),
+    constraint foreign key(`category_id`) references `category`(`id`)
 );
 
 -- alter table : 테이블의 속성을 수정, 보완하는 명령
