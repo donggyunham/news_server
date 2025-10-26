@@ -12,7 +12,9 @@ import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +58,17 @@ public class NewsService {
     * @Autowired
     * private CategoryRepository categoryRepository;
     * */
+
+    public Page<ArticleDTO> getArticles(Pageable pageable) {
+        // 페이징 리퀘스트를 발행일자로 내림차순 정렬
+        Pageable sorted = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC, "publishedAt")
+                );
+        return articleRepository.findAll(sorted).map((Article::toDTO));
+    }
+
     public NewsResponse getGeneral() throws URISyntaxException, IOException, InterruptedException {
 
         String url ="https://newsapi.org/v2/top-headlines?country=us&apiKey=a3b5b0243c714efea75778d097aed2ed";

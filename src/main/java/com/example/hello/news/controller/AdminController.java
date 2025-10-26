@@ -27,6 +27,12 @@ public class AdminController {
     private final NewsService newsService;
     private final ArticleService articleService;
 
+    /**
+     * /admin/category reques를 처리하기 위한 함수
+     * newsService로부터 카테고리 데이터 전체를 가져와서 model에 전달한다.
+     * @param model : 템플릿에 전달할 데이터세트
+     * @return
+     */
     @GetMapping("/category")
     public String categories(Model model){
         // 데이터베이스로부터 카테고리 정보를 가져와서 admin의 category 페이지에 전달한다.
@@ -163,6 +169,6 @@ public class AdminController {
 
     @GetMapping("/")
     public String index(Model model){
-        return "redirect/admin/dashboard";
+        return "redirect:/admin/dashboard";
     }
 }

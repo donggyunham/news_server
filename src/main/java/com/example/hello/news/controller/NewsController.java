@@ -1,8 +1,11 @@
 package com.example.hello.news.controller;
 
+import com.example.hello.news.dto.ArticleDTO;
 import com.example.hello.news.dto.NewsResponse;
 import com.example.hello.news.service.NewsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +34,8 @@ public class NewsController {
     // 이런 상황을 차단하고자 newsService 변수를 final로 설정함
     private final NewsService newsService;
 
-    @RequestMapping("/news")
-    public String newsHome(Model model) {
+    /*@RequestMapping("/news")
+    public String newsHome(Model model, Pageable pageable) {
         try{
             NewsResponse newsResponse = newsService.getGeneral();
             model.addAttribute("news", newsResponse);
@@ -40,6 +43,20 @@ public class NewsController {
             model.addAttribute("error", e.getMessage());
         }
         return "/news";
+    }*/
+    @RequestMapping("/news")
+    public String newsHome(Model model, Pageable pageable) {
+        try{
+            Page<ArticleDTO> articles = newsService.getArticles(pageable);
+            model.addAttribute("articles", articles);
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+        }
+        return "/news";
+    }
 
+    @RequestMapping("/")
+    public String index(Model model){
+        return "redirect:/news";
     }
 }

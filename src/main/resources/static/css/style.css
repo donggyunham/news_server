@@ -2,6 +2,62 @@
     text-decoration: none;
 }
 
+.card-body{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.article-img {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover; /* 이미지 비율 유지하면서 넘치는 부분 크롭 */
+    object-position: center; /* 이미지의 가운데를 기준으로 함 */
+    display: block;
+}
+
+.card-body a {
+    color: inherit;
+    text-decoration: none; /* 링크되는 컬러를 텍스트 기본 값으로 변경 */
+    cursor: pointer; /* 손가락 */
+}
+
+.card-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 최대 3줄 */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* 글자가 지정된 영역을 벗어나면 감춤처리 */
+    text-overflow: ellipsis; /* 감춤처리된 글자들이 있다면 문장 끝 부분을 ... 으로 */
+    line-height: 1.4em; /* 줄간격 */
+    font-weight: 600; /* 이 정도 부터 볼드체*/
+    height: calc(1.4em * 3); /* 타이틀 출력부의 높이를 줄간격의 3배 정도로 설정 */
+}
+
+.card-text {
+    color: #6c757d;
+    font-size: 0.9rem;
+    line-height: 1.4em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: calc(1.4em * 2);
+}
+
+.card-source {
+    color: white;
+    background-color: #111111;
+    border-radius: 0.3rem;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    width: auto;
+    justify-content: center;
+    text-align: center;
+}
+
 .article-card img{
     width: 10rem;
     height: auto;
@@ -16,4 +72,37 @@
     color: #0d6efd;
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 0.25rem;
+}
+
+.dboard-box {
+    --bg-color: #4287f5; /* 기본값 */
+    background-color: var(--bg-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 제목과 내용 위아래로 균등 분배 */
+    padding: 1rem;
+    height: 10rem;
+    border-radius: 0.5rem;
+}
+
+.dboard-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.dboard-content {
+    display: flex;
+    justify-content: space-between; /* 숫자와 아이콘 좌우 배치 */
+    align-items: center; /* 숫자와 아이콘 세로 가운데 정렬 */
+}
+
+.dboard-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.dboard-icon{
+    font-size: 5rem; /* 아이콘 크기*/
+    opacity: 0.3; /* 살짝 투명하게 */
 }

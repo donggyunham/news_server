@@ -66,7 +66,7 @@ create table article(
 	`id` bigint not null auto_increment primary key,
     `source_id` bigint,
     `category_id` bigint,
-    `author` varchar(150),
+    `author` varchar(255),
     `title` varchar(500),
     `description` text,
     `url` varchar(500) unique,

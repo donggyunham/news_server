@@ -5,6 +5,49 @@
 <body th:replace="~{layout :: base(~{::section})}">
     <section>
         <!-- Thymleaf 템플릿 형태, bootstrap css를 이용하여... -->
+        <h2>Dashboard</h2>
+        <hr>
+        <div class="row g-3 my-3">
+            <div class="col-12 col-lg-4">
+                <div class="dboard-box" style="--bg-color:#9b45f7">
+                    <div class="dboard-title">Articles</div>
+                    <div class="dboard-content">
+                        <div class="dboard-value">
+                            <span th:text="${counts.articles}"></span>
+                        </div>
+                        <div class="dboard-icon">
+                            <i class="bi bi-file-richtext-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="dboard-box" style="--bg-color:#8c45f7">
+                    <div class="dboard-title">Sources</div>
+                    <div class="dboard-content">
+                        <div class="dboard-value">
+                            <span th:text="${counts.sources}"></span>
+                        </div>
+                        <div class="dboard-icon">
+                            <i class="bi bi-database"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="dboard-box">
+                    <div class="dboard-title">Categories</div>
+                    <div class="dboard-content">
+                        <div class="dboard-value">
+                            <span th:text="${counts.categories}"></span>
+                        </div>
+                        <div class="dboard-icon">
+                            <i class="bi bi-tags"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <!-- 기사수 -->
             <div class="col-lg-6 col-xl-3 mb-4">
