@@ -104,3 +104,11 @@ select * from category;
 select * from source;
 
 -- update category set name = 'entertainment' where id = 4;
+-- 숙제 : notepad에 create table 만들어오기. create table users(); 필요한 필드가 무엇이 있을지 생각해보고 적어오기.
+create database qktmzmfks9 (
+	`` ,
+    `` ,
+    `` ,
+    `` ,
+    `` ,
+);
